@@ -3,6 +3,23 @@ import { isDef } from 'element-ui/src/utils/shared';
 
 let uid = 0;
 
+
+// node = {
+//   data:{},
+//   config:{},
+//   parent:{},
+//   level:0,
+//   uid:0,
+//   value:0,
+//   label:'',
+//   pathNodes:[],
+//   path:[value,value,value],
+//   pathLabels:[lable,lable,lable],
+//   loading:false,
+//   loaded:false,
+//   hasChildren:false,
+//   children:[],
+// }
 export default class Node {
 
   constructor(data, config, parentNode) {
@@ -21,7 +38,7 @@ export default class Node {
 
     this.value = this.data[valueKey];
     this.label = this.data[labelKey];
-    this.pathNodes = this.calculatePathNodes();
+    this.pathNodes = this.calculatePathNodes(); // // TODO: ccc [this,babaThis,yeyeThis] [{lable:'我'},{lable:'爸爸'},{label:'爷爷'}]
     this.path = this.pathNodes.map(node => node.value);
     this.pathLabels = this.pathNodes.map(node => node.label);
 
