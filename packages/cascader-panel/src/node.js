@@ -8,7 +8,7 @@ export default class Node {
   constructor(data, config, parentNode) {
     this.data = data;
     this.config = config;
-    this.parent = parentNode || null;
+    this.parent = parentNode || null; // TODO: ccc 父亲实例
     this.level = !this.parent ? 1 : this.parent.level + 1;
     this.uid = uid++;
 
@@ -35,6 +35,7 @@ export default class Node {
     const childrenKey = config.children;
     const childrenData = this.data[childrenKey];
     this.hasChildren = Array.isArray(childrenData);
+    // TODO: ccc 递归这个树
     this.children = (childrenData || []).map(child => new Node(child, config, this));
   }
 
@@ -68,7 +69,7 @@ export default class Node {
       parent = parent.parent;
     }
 
-    return nodes;
+    return nodes; // [this]
   }
 
   getPath() {

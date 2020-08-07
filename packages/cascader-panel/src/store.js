@@ -49,7 +49,7 @@ export default class Store {
       ? cachedNodes
       : flatNodes(this.nodes, leafOnly);
   }
-
+  // TODO: ccc ['1','1-1','1-1-1']
   getNodeByValue(value) {
     if (value) {
       const nodes = this.getFlattedNodes(false, !this.config.lazy)

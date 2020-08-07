@@ -349,7 +349,7 @@ export default {
     if (input && input.$el) {
       this.inputInitialHeight = input.$el.offsetHeight || InputSizeMap[this.realSize] || 40;
     }
-
+    // TODO: ccc 编辑
     if (!isEmpty(this.value)) {
       this.computePresentContent();
     }
@@ -477,10 +477,11 @@ export default {
     computePresentContent() {
       // nextTick is required, because checked nodes may not change right now
       this.$nextTick(() => {
+        // TODO: ccc 多选
         if (this.config.multiple) {
           this.computePresentTags();
           this.presentText = this.presentTags.length ? ' ' : null;
-        } else {
+        } else { // TODO: ccc 默认
           this.computePresentText();
         }
       });

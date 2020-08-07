@@ -158,6 +158,7 @@ export default {
 
   mounted() {
     if (!isEmpty(this.value)) {
+      // TODO: ccc 初始化checked，给默认之类的，同步的，外面需要等微任务
       this.syncCheckedValue();
     }
   },
@@ -175,11 +176,13 @@ export default {
     },
     syncCheckedValue() {
       const { value, checkedValue } = this;
+      // TODO: ccc 不相等哦，说明是编辑
       if (!isEqual(value, checkedValue)) {
         this.checkedValue = value;
         this.syncMenuState();
       }
     },
+    // TODO: ccc 同步获取menu
     syncMenuState() {
       const { multiple, checkStrictly } = this;
       this.syncActivePath();
@@ -196,11 +199,11 @@ export default {
     },
     syncActivePath() {
       const { store, multiple, activePath, checkedValue } = this;
-
+      // TODO: ccc 初始化是空的
       if (!isEmpty(activePath)) {
         const nodes = activePath.map(node => this.getNodeByValue(node.getValue()));
         this.expandNodes(nodes);
-      } else if (!isEmpty(checkedValue)) {
+      } else if (!isEmpty(checkedValue)) { // TODO: ccc 编辑初始化是有得到值的
         const value = multiple ? checkedValue[0] : checkedValue;
         const checkedNode = this.getNodeByValue(value) || {};
         const nodes = (checkedNode.pathNodes || []).slice(0, -1);
@@ -291,6 +294,7 @@ export default {
       if (!node) {
         node = node || { root: true, level: 0 };
         this.store = new Store([], config);
+        // 可处理配置
         this.menus = [this.store.getNodes()];
       }
       node.loading = true;
